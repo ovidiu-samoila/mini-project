@@ -1,0 +1,13 @@
+<div [ngStyle]="{'color': '#f3dcd9'}" class="attachment-container d-flex f-direction-row justify-sa">
+  <div style="width: 30%">
+    <mat-icon mat-list-icon [ngStyle]="{'color': '#e0595a'}" class="extension-icon">picture_as_pdf</mat-icon>
+  </div>
+  <div class="d-flex f-direction-col" style="width: 70%">
+    <div class="att-title">{{att.title}}</div>
+    <div class="att-size">{{att.size}}</div>
+    <div class="d-flex f-direction-row justify-sb align-center">
+      <div class="att-title underline">Download</div>
+        <mat-icon mat-list-icon [ngStyle]="{'color': '#e0595a'}" class="eye-icon">remove_red_eye</mat-icon>
+    </div>
+  </div>
+</div>

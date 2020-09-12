@@ -1,0 +1,121 @@
+<div class="messages-page-container">
+
+  <div class="side-menu-container">
+      <div class="category-container" *ngFor="let menuItem of sideMenu">
+        <div class="medium-title mb-20" mat-subheader>{{menuItem.title}}</div>
+        <div class="item-container" *ngFor="let item of menuItem.items; let i = index">
+          <div style="width: 140px;display: flex">
+            <mat-icon mat-list-icon [ngStyle]="{'color': item.icon.color}" class="custom-icon">{{item.icon.title}}</mat-icon>
+            <span mat-line class="item-name" [ngClass]="{'selected' : item.id ===11}">{{item.name}}</span>
+          </div>
+          <span *ngIf="item.badge" class="round-badge">{{item.badge.value}}</span>
+
+        </div>
+      </div>
+  </div>
+
+  <div class="messages-container">
+    <div class="messages-list-container">
+
+      <div class="messages-list-header d-flex align-center justify-sb">
+        <div class="d-flex align-fs ml-15">
+          <span class="medium-title">Recent</span>
+          <mat-icon mat-list-icon class="small-icon">keyboard_arrow_down</mat-icon>
+        </div>
+        <mat-icon mat-list-icon [ngStyle]="{'color': 'grey'}" class="custom-icon mr-15">search</mat-icon>
+      </div>
+
+      <div *ngFor="let email of emails" (click)="handleEmailSelect(email)"  class="email-item d-flex" [ngClass]="{'active': !!selectedEmail && selectedEmail.id === email.id}">
+          <div class="avatar-container">
+            <div [ngStyle]="{'background-color': email.avatar.bg, 'color': email.avatar.text}" class="avatar-circle d-flex justify-center align-center ml-15">
+              {{email.from.split(' ')[0].charAt(0) + email.from.split(' ')[1].charAt(0)}}
+            </div>
+          </div>
+          <div class="email-info-container">
+            <div class="from-text">{{email.from}}</div>
+            <span class="medium-title">{{email.subject}}</span>
+            <div class="email-content mt-6">{{email.content}}</div>
+          </div>
+          <div class="time-and-type mr-15 d-flex f-direction-col justify-sb align-fe">
+            <span>{{email.time | date: isToday(email.time) ? 'shortTime' : 'medium'}}</span>
+            <div>
+              <mat-icon *ngIf="email.attachment" mat-list-icon [ngStyle]="{'color': 'grey'}" class="att-icon">attachment</mat-icon>
+            </div>
+          </div>
+      </div>
+
+    </div>
+
+
+    <div class="message-details-container d-flex justify-center align-center">
+      <div class="avatar-message-container d-flex justify-fe align-fs">
+        <div [ngStyle]="{'background-color': selectedEmail.avatar.bg, 'color': selectedEmail.avatar.text}" class="avatar-circle d-flex justify-center align-center mr-10">
+          {{selectedEmail.from.split(' ')[0].charAt(0) + selectedEmail.from.split(' ')[1].charAt(0)}}
+        </div>
+      </div>
+      <div class="message-details-data">
+
+        <div style="height: 140px">
+          <div class="from-user-details d-flex justify-sb align-center f-direction-row">
+            <div class="d-flex f-direction-col">
+              <div class="email">{{selectedEmail.from}}</div>
+              <div class="from-text">{{selectedEmail.email}}</div>
+            </div>
+            <div class="full-date">{{selectedEmail.time | date}} - {{selectedEmail.time | date: 'shortTime'}} </div>
+          </div>
+
+          <div class="subject-container d-flex f-direction-row justify-sb align-center">
+            <div class="subject-text">{{selectedEmail.subject}}</div>
+            <div>
+              <mat-icon mat-list-icon [ngStyle]="{'color': 'grey'}" class="medium-icon">double_arrow</mat-icon>
+              <mat-icon mat-list-icon [ngStyle]="{'color': 'grey'}" class="medium-icon">east</mat-icon>
+              <mat-icon mat-list-icon [ngStyle]="{'color': 'grey'}" class="medium-icon">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="reply-container">
+          <div class="reply-title">Hello Mike,</div>
+          <div class="msg-for-reply">
+            Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+            Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+            Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+            Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+
+          </div>
+          <div class="email-text-content">
+            {{selectedEmail.content}}
+          </div>
+          <div class="attachments-container">
+            <app-attachment-element *ngFor="let att of selectedEmail.attachments" [att]="att"></app-attachment-element>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="input-container">
+          <form [formGroup]="messageForm">
+              <input (change)="onChange($event.target)" class="form-control custom-input" placeholder="Start writing yout response here..." type="text" formControlName="message" autofocus/>
+          </form>
+
+<!--          <input type="file" class="custom-file-input" [formControlName]="formSelectionName" id="file"-->
+<!--                 [accept]="acceptedExtensions" (change)="onFileChange($event.target['files'])">-->
+
+          <div class="bottom-actions-container">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

@@ -1,1 +1,89 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.d-flex {
+  display: flex;
+}
+
+.justify-sb {
+  justify-content: space-between;
+}
+
+.justify-sa {
+  justify-content: space-between;
+}
+
+.justify-se {
+  justify-content: space-evenly;
+}
+
+.justify-fs {
+  justify-content: flex-start;
+}
+
+.justify-fe {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-fs {
+  align-items: flex-start;
+}
+
+.align-fe {
+  align-items: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.medium-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+.mb-20 {
+  margin-bottom: 22px;
+}
+
+.ml-15 {
+  margin-left: 15px
+}
+
+.mr-15 {
+  margin-right: 15px
+}
+
+.mt-6 {
+  margin-top: 6px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.f-direction-row {
+  flex-direction: row;
+}
+
+.f-direction-col {
+  flex-direction: column;
+}
+
+.medium-icon {
+  font-size: 18px;
+}
+
+.underline {
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
+}
